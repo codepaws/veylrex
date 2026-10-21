@@ -10,11 +10,11 @@ The repository is a Cargo workspace. Each engine adapter owns its native API bou
 | --- | --- | --- |
 | [`veylrex`](crates/veylrex/README.md) | Provider capability contracts, deterministic selection, and preprocessed MNN vision inference | Initial implementation |
 | [`llama-cpp-oxide`](crates/llama-cpp-oxide/README.md) | Rust interface and native packaging for llama.cpp | Scaffold; runner not implemented |
-| [`onnx-oxide`](crates/onnx-oxide/README.md) | Optional thin Veylrex adapter around `ort` | Scaffold; runner not implemented |
+| [`onnx-oxide`](crates/onnx-oxide/README.md) | ONNX Runtime f32 tensor runner with explicit runtime loading | Initial CPU runner; CUDA/CoreML build options |
 
 MNN is consumed through the default-enabled, disableable `mnn` feature from the pinned `codepaws/mnn-oxide` Git revision in the crate manifest. That repository owns bindings, native builds, and packaging. A consumer must configure an explicit MNN native artifact; Cargo does not fetch or build the MNN runtime automatically. Veylrex accepts preprocessed f32 image tensors and returns raw output tensors. It has no image decoding, preprocessing, or OCR workflow API.
 
-The shared provider API distinguishes implementation, build, and runtime state. MNN CPU is selectable when its native creator and runtime probe succeed. Accelerator adapter features can be enabled with `mnn-cuda`, `mnn-vulkan`, `mnn-metal`, or `mnn-opencl`; each must pass native capability probing before selection. Explicit unknown providers are rejected. An omitted provider selects CPU. The ONNX Runtime and llama.cpp crates do not yet implement inference or provider backends.
+The shared provider API distinguishes implementation, build, and runtime state. MNN CPU is selectable when its native creator and runtime probe succeed. Accelerator adapter features can be enabled with `mnn-cuda`, `mnn-vulkan`, `mnn-metal`, or `mnn-opencl`; each must pass native capability probing before selection. ONNX Runtime is pinned to `ort` 2.0.0-rc.13 with binary download and copy features disabled. `onnx-cuda` and `onnx-coreml` enable the corresponding runtime APIs; callers supply an explicit ONNX Runtime shared-library path, and provider status stays unknown until runtime and session evidence exists. Explicit unknown providers are rejected. An omitted provider selects CPU. The llama.cpp crate remains a scaffold and does not yet implement inference or provider backends.
 
 ## Design principles
 

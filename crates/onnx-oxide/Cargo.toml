@@ -8,6 +8,13 @@ description = "Optional Veylrex integration layer for the ort ONNX Runtime crate
 readme = "README.md"
 
 [dependencies]
+ort = { version = "=2.0.0-rc.13", default-features = false, features = ["std", "load-dynamic", "api-24"], optional = true }
+
+[features]
+default = ["runner"]
+runner = ["dep:ort"]
+cuda = ["runner", "ort/cuda"]
+coreml = ["runner", "ort/coreml"]
 
 [lints]
 workspace = true
