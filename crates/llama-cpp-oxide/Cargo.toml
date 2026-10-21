@@ -9,8 +9,13 @@ readme = "README.md"
 
 [features]
 default = []
+runner = ["dep:llama-cpp-2"]
+cuda = ["runner", "llama-cpp-2/cuda"]
+vulkan = ["runner", "llama-cpp-2/vulkan"]
+metal = ["runner", "llama-cpp-2/metal"]
 
 [dependencies]
+llama-cpp-2 = { version = "=0.1.160", default-features = false, optional = true }
 
 [lints]
 workspace = true
