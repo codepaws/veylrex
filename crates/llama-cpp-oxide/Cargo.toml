@@ -1,0 +1,16 @@
+[package]
+name = "llama-cpp-oxide"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Rust bindings and safe abstractions for llama.cpp"
+readme = "README.md"
+
+[features]
+default = []
+
+[dependencies]
+
+[lints]
+workspace = true
