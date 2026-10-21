@@ -1,0 +1,13 @@
+[package]
+name = "onnx-oxide"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Optional Veylrex integration layer for the ort ONNX Runtime crate"
+readme = "README.md"
+
+[dependencies]
+
+[lints]
+workspace = true

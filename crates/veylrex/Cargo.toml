@@ -1,0 +1,27 @@
+[package]
+name = "veylrex"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "In-process orchestration for modular Rust model runners"
+readme = "README.md"
+
+[features]
+default = ["mnn"]
+mnn = ["dep:mnn-oxide", "mnn-oxide/module"]
+mnn-cuda = ["mnn", "mnn-oxide/cuda"]
+mnn-vulkan = ["mnn", "mnn-oxide/vulkan"]
+mnn-metal = ["mnn", "mnn-oxide/metal"]
+mnn-opencl = ["mnn", "mnn-oxide/opencl"]
+llama-cpp = ["dep:llama-cpp-oxide"]
+onnx = ["dep:onnx-oxide"]
+
+[dependencies]
+llama-cpp-oxide = { path = "../llama-cpp-oxide", version = "0.1.0", optional = true }
+onnx-oxide = { path = "../onnx-oxide", version = "0.1.0", optional = true }
+mnn-oxide = { git = "https://github.com/codepaws/mnn-oxide.git", rev = "d2bcc22cbeddbdc097ed65ca99f982e6574b4017", version = "0.1.7", optional = true }
+
+[lints]
+workspace = true

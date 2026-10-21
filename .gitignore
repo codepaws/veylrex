@@ -1,0 +1,8 @@
+/target/
+/docs/superpowers/
+/build/
+/dist/
+*.log
+.env
+.env.*
+!.env.example
